@@ -1,4 +1,4 @@
-### tmux config
+###### tmux config
 
 
     1. Make a backup of old tmux config
@@ -9,11 +9,11 @@
 
 ###### for ufw add this in ` /etc/sudoers ` 
     
-######   ` Cmnd_Alias UFWSTATUS = /usr/sbin/ufw status `
+###### <font size="2">  ` Cmnd_Alias UFWSTATUS = /usr/sbin/ufw status ` </font>
 
 ###### add the UFWSTATUS variable in end of usr permission  ex:
 
-######   ` <login_user_name> ALL= NOPASSWD: /usr/bin/mount, /usr/bin/umount, /usr/bin/tee, UFWSTATUS `
+###### <font size="2">  ` <login_user_name> ALL= NOPASSWD: /usr/bin/mount, /usr/bin/umount, /usr/bin/tee, UFWSTATUS ` </font>
 
 ###### Screen shot
 
