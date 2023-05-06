@@ -1,4 +1,4 @@
-###### tmux config
+###### tmux config with fontawesome
 
 
     1. Make a backup of old tmux config
