@@ -1,4 +1,4 @@
-### tmux config with fontawesome 
+### minimal tmux dark theme config with fontawesome 
 
     1. Make a backup of old tmux config
     2. install fontawesome font 
