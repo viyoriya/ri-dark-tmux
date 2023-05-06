@@ -1,5 +1,7 @@
 #! /bin/bash
-# viyoriya
+# https://github.com/viyoriya
+
+
 
 timer(){
     timerFile="/tmp/.timerFile"
@@ -12,7 +14,8 @@ timer(){
         if [ "$timeDiff" -ge "0" ]; then
             echo -e "#[fg=colour39]Timer $timeDiff Min#[default]"
         else
-            for i in {1..5}; do aplay ~/.config/dwm/util/mixkit-happy-bell-alert-601.wav > /dev/null 2>&1  ; done
+            notify-send -u low "Timer" "done !!!" 
+            #for i in {1..5}; do aplay ~/.config/dwm/util/mixkit-happy-bell-alert-601.wav > /dev/null 2>&1  ; done
             rm $timerFile
         fi
     fi

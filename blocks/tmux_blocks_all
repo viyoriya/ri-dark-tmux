@@ -1,5 +1,5 @@
 #! /bin/bash
-# www.github.com/viyoriya
+# https://github.com/viyoriya
 
 timer(){
     timerFile="/tmp/.timerFile"
