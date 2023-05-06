@@ -1,15 +1,12 @@
-### tmux config with fontawesome
-
-
+### tmux config with fontawesome (Ri-Dark theme)
 
 
     1. Make a backup of old tmux config
     2. install fontawesome font 
-    3. install ufw (optional)
-    4. Provide sudo execute permission (if you install ufw)
-    5. Add alias in .bashrc/.zshrc for tty conf
+    3. add alias in .bashrc/.zshrc for tty conf
+    4. install ufw (optional) and provide sudo execute permission (if you install ufw)
 
-###### for tty add this line in .bashrc/.zshrc
+###### In .bashrc/.zshrc add this below line for accessing tmux in tty 
 
 ######  `  [[ $TERM = 'linux' ]] && alias tmux='tmux -u -f ~/.config/tmux/tmux.tty.conf' `  
 
@@ -20,9 +17,6 @@
 ###### add the UFWSTATUS variable in end of usr permission  ex:
 
 ######  `     <login_user_name> ALL= NOPASSWD: /usr/bin/mount, /usr/bin/umount, /usr/bin/tee, UFWSTATUS    ` 
-
-
-
 
 
 ###### terminal screenshot
