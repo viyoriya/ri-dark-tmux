@@ -11,15 +11,15 @@
 
 ###### for tty add this line in .bashrc/.zshrc
 
-#######  `  [[ $TERM = 'linux' ]] && alias tmux='tmux -u -f ~/.config/tmux/tmux.tty.conf' `  
+######  `  [[ $TERM = 'linux' ]] && alias tmux='tmux -u -f ~/.config/tmux/tmux.tty.conf' `  
 
 ###### for ufw add this in ` /etc/sudoers ` 
     
-#######  `     Cmnd_Alias UFWSTATUS = /usr/sbin/ufw status   `
+######  `     Cmnd_Alias UFWSTATUS = /usr/sbin/ufw status   `
 
 ###### add the UFWSTATUS variable in end of usr permission  ex:
 
-#######  `     <login_user_name> ALL= NOPASSWD: /usr/bin/mount, /usr/bin/umount, /usr/bin/tee, UFWSTATUS    ` 
+######  `     <login_user_name> ALL= NOPASSWD: /usr/bin/mount, /usr/bin/umount, /usr/bin/tee, UFWSTATUS    ` 
 
 
 
