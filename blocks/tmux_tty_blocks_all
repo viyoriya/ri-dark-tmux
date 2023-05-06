@@ -1,0 +1,77 @@
+#! /bin/bash
+# viyoriya
+
+timer(){
+    timerFile="/tmp/.timerFile"
+    if [ -f $timerFile ]; then
+        timer=$(cat $timerFile)
+        tmpTime=$(date -d "$timer" +'%H:%M')
+        timerSec=$(date +%s -d "$tmpTime")
+        now=$(date +%s)
+        timeDiff=$(( ($timerSec - $now) / 60 ))
+        if [ "$timeDiff" -ge "0" ]; then
+            echo -e "#[fg=colour39]Timer $timeDiff Min#[default]"
+        else
+            for i in {1..5}; do aplay ~/.config/dwm/util/mixkit-happy-bell-alert-601.wav > /dev/null 2>&1  ; done
+            rm $timerFile
+        fi
+    fi
+}
+
+usbmon() {
+    i=1
+    for usb in $(\lsblk -la | awk '/s[a-z][a-z][0-9]/ && $7!="/" && $7!="[SWAP]" {print $1}')
+    do
+       [[ $i -le 1 ]] && printf "USB $usb"
+       [[ $i -gt 1 ]] && printf " $usb"
+       let "i+=1"
+    done
+}
+
+network() {
+    conntype=$(ip route | awk '/default/ { print substr($5,1,1) }')
+    if [ -z "$conntype" ]; then
+            echo -e "#[fg=red]Wifi down#[default]"
+    elif [ "$conntype" = "e" ]; then
+            echo -e "#[fg=colour39]Eth up#[default]"
+    elif [ "$conntype" = "w" ]; then
+            echo -e "#[fg=green]Wifi up#[default]"
+    fi
+}
+
+battery(){
+    for battery in /sys/class/power_supply/BAT?*; do
+        [ -n "${capacity+x}" ] && printf " "
+        case "$(cat "$battery/status" 2>&1)" in
+            "Full") status="Full" ;;
+            "Charging") status="Mains" ;;
+		    "Discharging") status="Bat" ;;
+            "Not charging") status="!  " ;;
+            "Unknown") status="♻️  " ;;
+            *) exit 1 ;;
+        esac
+        capacity="$(cat "$battery/capacity" 2>&1)"
+        if [ "$status" = "Bat" ]; then
+            [[ "$capacity" -lt 50 ]] && status="#[fg=colour176]Bat"
+	        [[ "$capacity" -lt 20 ]] && status="#[fg=red]Bat"
+        fi    
+        [[ ! "$status" = "Bat" && "$capacity" -gt 85 && $(cat "/sys/class/power_supply/AC/online") = "1"  ]] && status="#[fg=red]Mains "
+        printf "%s%d%%" "$status " "$capacity";
+    done
+}
+
+ufw(){
+    ufwstatus=$(sudo ufw status | awk '{ print $2 }')
+    if [ "$ufwstatus" = "active" ]; then
+           echo -e "#[fg=colour100]UFW#[default]"
+    elif [ "$ufwstatus" = "inactive" ]; then
+          echo -e "#[fg=red]UFW#[default]"
+    fi
+}
+
+VOLUME="$(amixer get Master | tail -1 | awk '{print substr($4, 2, length($4) - 3)}')"
+MEMORY=$(free -m | awk '/Mem/ {printf "%d MB\n", $3 }')
+DATE_TIME=$(date +"%d/%m %H:%M")
+
+echo -e "$(timer) #[fg=colour6]$(usbmon)#[default] $(network) #[fg=colour195]Vol $VOLUME%#[default] $(battery)#[default] #[fg=colour96]Mem $MEMORY#[default] $DATE_TIME $(ufw)"
+
