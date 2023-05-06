@@ -18,7 +18,7 @@ add the UFWSTATUS variable in end of usr permission  ex:
 
 ###### Screen shot
 
-![terminal](https://github.com/viyoriya/tmux/blob/master/screenshot/2023-terminal.png)
+![terminal](https://github.com/viyoriya/tmux/blob/main/screenshot/2023-terminal.png)
 
-![tty](https://github.com/viyoriya/tmux/blob/master/screenshot/2023-tty.png)
+![tty](https://github.com/viyoriya/tmux/blob/main/screenshot/2023-tty.png)
   
