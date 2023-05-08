@@ -23,7 +23,8 @@ timer(){
 
 usbmon() {
     i=1
-    for usb in $(\lsblk -la | awk '/s[a-z][a-z][0-9]/ && $7!="/" && $7!="[SWAP]" {print $1}')
+   #for usb in $(\df -Th | awk '/s[a-z][a-z][0-9]/ && $7!="/" {print substr($1,6)}')
+    for usb in $(\lsblk -do name,tran | awk '$2=="usb" {print $1}')        
     do
        [[ $i -le 1 ]] && printf "USB $usb"
        [[ $i -gt 1 ]] && printf " $usb"
